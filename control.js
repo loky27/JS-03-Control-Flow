@@ -19,6 +19,9 @@ const dayWeek=(day)=>{
             return 'valor no valido'
     }
 };
+const transMonth=(string)=>(
+    monthYear(string.toUpperCase())
+)
 const dayYear=(day)=>{
     switch (key) {
         case day>=0 && day<=31 :
@@ -99,9 +102,11 @@ const vaHour=(hour)=>(hour>=0 && hour<=23 ? hour :'error hour')
 const transf=(string)=>(string[1]=='p'? parseInt(string[0])+12 : parseInt(string[0]))
 //define horario
 const dayHour=(hour)=>(hour>=9 && hour<=18 ? ' es horario comercial' : ' no es horario comercial')
+//definir el dia
+const defDay=(day)=>(day>=1 && day <=5 ? 'es un dia comercial' : 'no es un dia comercial')
 //parte uno
 const businessHours=(dayNumber,hourNumber)=>{
-    return 'El '+dayWeek(dayNumber)+'a las'+hourNumber+'hrs '+dayHour(hourNumber)
+    return 'El '+dayWeek(dayNumber)+ defDay(dayWeek(dayNumber))+'a las'+hourNumber+'hrs pero '+dayHour(hourNumber)
 }
 const onePart=()=>{
     var {
@@ -111,9 +116,7 @@ const onePart=()=>{
     return businessHours(day,hour)
 }
 //
-const transMonth=(string)=>(
-    monthYear(string.toUpperCase())
-)
+
 const loopWeek=(day,num)=>{
     for (let index = 1; index < num; index++) {
         if (day==6) {
